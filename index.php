@@ -1,5 +1,5 @@
 <?php
 
-require 'controllers/home.php';
+require 'router.php';
 
 ?>
