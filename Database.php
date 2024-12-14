@@ -32,6 +32,16 @@ class Database {
     return $this->statement->fetchAll();
   }
 
+  public function findOrFail() {
+    $results = $this->statement->fetch();
+
+    if (!$results) {
+      abort();
+    }
+
+    return $results;
+  }
+
 }
 
 ?>
