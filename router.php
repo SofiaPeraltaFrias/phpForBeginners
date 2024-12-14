@@ -12,10 +12,17 @@ function routeToController($uri, $routes) {
   if (array_key_exists($uri, $routes)) {
     require $routes[$uri];
   } else {
-    die();
+    abort();
   }
 }
 
+function abort($status = 404) {
+  http_response_code($status);
+
+  require "controllers/$status.php";
+
+  die();
+}
 
 routeToController($uri, $routes);
 
