@@ -18,7 +18,7 @@ function routeToController($uri, $routes) {
   }
 }
 
-function abort($status = 404) {
+function abort($status = Response::NOT_FOUND) {
   http_response_code($status);
 
   require "controllers/$status.php";
