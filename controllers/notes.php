@@ -8,7 +8,7 @@ $db = new Database($config['database']);
 
 $query = "select * from notes";
 
-$notes = $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+$notes = $db->query($query)->findAll(PDO::FETCH_ASSOC);
 
 require "views/notes.view.php";
 
