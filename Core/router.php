@@ -17,6 +17,10 @@ class Router {
     $this->add($uri, $controller, "GET");
   }
 
+  public function post($uri, $controller) {
+    $this->add($uri, $controller, "POST");
+  }
+
   public function delete($uri, $controller) {
     $this->add($uri, $controller, "DELETE");
   }
