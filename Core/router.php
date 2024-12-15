@@ -1,10 +1,10 @@
 <?php
 
-$routes = require('routes.php');
+$routes = require basepath('routes.php');
 
 function routeToController($uri, $routes) {
   if (array_key_exists($uri, $routes)) {
-    require $routes[$uri];
+    require basepath($routes[$uri]);
   } else {
     abort();
   }
@@ -13,7 +13,7 @@ function routeToController($uri, $routes) {
 function abort($status = Response::NOT_FOUND) {
   http_response_code($status);
 
-  require "controllers/$status.php";
+  require basepath("controllers/$status.php");
 
   die();
 }
