@@ -6,6 +6,12 @@ function urlIs($url) {
     return $_SERVER['REQUEST_URI'] === $url;
 }
 
+function abort($status = Response::NOT_FOUND) {
+  http_response_code($status);
+  require basepath("controllers/$status.php");
+  die();
+}
+
 function authorize($condition, $status = Response::FORBIDDEN) {
   if (!$condition) {
     abort($status);
