@@ -1,10 +1,9 @@
 <?php 
 
 use Core\Database;
+use Core\App;
 
-$config = require basepath('config.php');
-
-$db = new Database($config['database']);
+$db = App::resolve('Core/Database');
 
 $query = "select * from notes";
 
