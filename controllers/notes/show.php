@@ -2,7 +2,7 @@
 
 use Core\Database;
 
-$currentUserId = 5;
+$currentUserId = 3;
 
 $config = require basepath('config.php');
 $db = new Database($config['database']);
