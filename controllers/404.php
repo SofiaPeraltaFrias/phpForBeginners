@@ -1,7 +1,8 @@
 <?php
 
-$heading = 'Not Found';
+view('index.view.php', [
+  'heading' => 'Not Found'
+]);
 
-require 'views/404.view.php';
 
 ?>

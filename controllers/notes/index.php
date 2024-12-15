@@ -1,8 +1,6 @@
 <?php 
 
-$heading = 'My Notes';
-
-$config = require 'config.php';
+$config = require basepath('config.php');
 
 $db = new Database($config['database']);
 
@@ -10,6 +8,10 @@ $query = "select * from notes";
 
 $notes = $db->query($query)->findAll(PDO::FETCH_ASSOC);
 
-require "views/notes/index.view.php";
+view('notes/index.view.php', [
+  'heading' => 'My Notes',
+  'notes' => $notes
+]);
+
 
 ?>

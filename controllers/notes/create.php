@@ -1,15 +1,12 @@
 <?php
 
-$heading = "Create a Note"; 
-
-$config = require 'config.php';
+$config = require basepath('config.php');
 $db = new Database($config['database']);
 
 $maxNoteLength = 30;
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-  $errors = [];
 
   $noteLength = strlen(trim($_POST['body']));
 
@@ -26,10 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       'user_id' => 3
     ]);
   }
-
-
 }
 
-require 'views/notes/create.view.php';
+view('notes/create.view.php', [
+  'heading' => 'Create a Note',
+  'errors' => $errors
+]);
 
 ?>
