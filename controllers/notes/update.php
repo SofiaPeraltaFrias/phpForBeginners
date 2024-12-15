@@ -3,7 +3,13 @@
 
 use Core\App;
 
+$currentUserId = 3;
+
 $db = App::resolve('Core/Database');
+
+$note = $db->query("select * from notes where id = :id", ['id' => $_POST['id']])->findOrFail();
+
+authorize($note['user_id'] === $currentUserId);
 
 $maxNoteLength = 30;
 $errors = [];
@@ -17,20 +23,21 @@ if ($noteLength === 0) {
 }
 
 if (!empty($errors)) {
-  view('notes/create.view.php', [
-    'heading' => 'Create a Note',
-    'errors' => $errors
+  view('notes/edit.view.php', [
+    'heading' => 'Edit Note',
+    'errors' => $errors,
+    'note' => $note
   ]);
   exit();
 }
 
-$query = "INSERT INTO notes(body, user_id) VALUES(:body, :user_id)";
+$query = "update notes set body = :body where id = :id";
 $db->query($query, [
   'body' => $_POST['body'],
-  'user_id' => 3
+  'id' => $_POST['id']
 ]);
 
-header('location: /notes');
+header("location: /note?id={$note['id']}");
 exit();
 
 ?>

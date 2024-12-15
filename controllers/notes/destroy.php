@@ -1,6 +1,6 @@
 <?php 
 
-use Core\Database;
+
 use Core\App;
 
 $currentUserId = 3;
