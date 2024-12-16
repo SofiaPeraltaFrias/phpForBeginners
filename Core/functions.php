@@ -22,7 +22,7 @@ function basepath($path) {
   return BASE_PATH . $path;
 }
 
-function view($path, $variables) {
+function view($path, $variables = []) {
   extract($variables);
   require basepath("views/" . $path);
 }

@@ -2,6 +2,7 @@
 
 
 use Core\App;
+use Core\Validator;
 
 $db = App::resolve('Core/Database');
 
@@ -10,10 +11,8 @@ $errors = [];
 
 $noteLength = strlen(trim($_POST['body']));
 
-if ($noteLength === 0) {
-  $errors['body'] = "A body is required";
-} elseif ($noteLength > $maxNoteLength) {
-  $errors['body'] = "You have exceeded the maximum note length by " . ($noteLength - $maxNoteLength) . " characters.";
+if (!Validator::string($_POST['body'], 1, 30)) {
+  $errors['body'] = "Please enter between 1 and 30 characters.";
 }
 
 if (!empty($errors)) {
