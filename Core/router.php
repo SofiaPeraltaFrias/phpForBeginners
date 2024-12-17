@@ -50,7 +50,7 @@ class Router {
     foreach ($this->routes as $route) {
       if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
         Middleware::resolve($route['middleware']);
-        require basepath("{$route['controller']}");
+        require basepath("Http/controllers/{$route['controller']}");
         exit();
       }
     }
@@ -60,7 +60,7 @@ class Router {
 
   protected function abort($status = Response::NOT_FOUND) {
     http_response_code($status);
-    require basepath("controllers/$status.php");
+    require basepath("Http/controllers/$status.php");
     die();
   }
 
