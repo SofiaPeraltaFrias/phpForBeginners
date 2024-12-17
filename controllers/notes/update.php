@@ -4,7 +4,7 @@
 use Core\App;
 use Core\Validator;
 
-$currentUserId = 3;
+$currentUserId = $_SESSION['user']['user_id'];
 
 $db = App::resolve('Core/Database');
 

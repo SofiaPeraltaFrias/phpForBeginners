@@ -27,4 +27,13 @@ function view($path, $variables = []) {
   require basepath("views/" . $path);
 }
 
+function login($user) {
+  $_SESSION['user'] = [
+    'email' => $user['email'],
+    'user_id' => $user['id']
+  ];
+
+  session_regenerate_id(true);
+}
+
 ?>
